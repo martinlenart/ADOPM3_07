@@ -15,11 +15,12 @@ namespace ADOPM3_07_03
     {
         private static void Main(string[] args)
         {
-            int nrDownLoads = 0;
-            int nrCharDownloaded = 0;
+            int nrDownLoads = 0;        //Scoped - used as Thread input value and copied to local in the LE
+            int nrCharDownloaded = 0;   //Scoped - used as Thread output parameter
+            
             var t1 = new Thread((object url) =>
             {
-                int localNrDownLoads = nrDownLoads;
+                int localNrDownLoads = nrDownLoads;     //Copy the scoped to a local variable
                 using (var w = new WebClient())
                 {
                     string page = null;
@@ -35,7 +36,7 @@ namespace ADOPM3_07_03
             });
             var t2 = new Thread((object url) =>
             {
-                int localNrDownLoads = nrDownLoads;
+                int localNrDownLoads = nrDownLoads;     //Copy the scoped to a local variable
                 using (var w = new WebClient())
                 {
                     string page = null;
@@ -63,8 +64,6 @@ namespace ADOPM3_07_03
     }
     //Exercise
     //1.    Identify and explain the difference scoped variables, captured variable and passing data as thread argument.
-    //2.    Modify thread codes to use nrDownloads directly and put the thread to sleep before using the variable, 
-    //      meanwhile modifying for second thread. What happens?
     //2.    Create your own LE task using scoped, captured variables as well as passing data as thread argument.
     //      Do you get data syncronization problems?
 }

@@ -15,6 +15,8 @@ namespace ADOPM3_07_01
             t1.Start("https://www.cnn.com/");
             t2.Start("https://www.bbc.com/");
             t3.Start("https://dotnet.microsoft.com/");
+
+            Console.WriteLine("Main finished");
         }
 
         private static void MyThreadEntryPoint(object arg)
@@ -24,12 +26,19 @@ namespace ADOPM3_07_01
             using (var w = new WebClient())
             {
                 Console.WriteLine($"Downloading {url}");
-                string page = w.DownloadString(url);
-                Console.WriteLine($"Downloaded {url}, length {page.Length}");
+                try
+                {
+                    string page = w.DownloadString(url);
+                    Console.WriteLine($"Downloaded {url}, length {page.Length}");
+                }
+                catch
+                {
+                    Console.WriteLine("Connection error");
+                }
             }
         }
     }
     //Exercise
     //1. Explore with the debugger the content of the downloaded page. 
-    //2. Create a Task using Lambda Expression as the delegate
+    //2. Create a Thread, t4, using Lambda Expression as the delegate to define the Thread activity. Don't forget to start the Thread.
 }

@@ -20,18 +20,21 @@ namespace ADOPM3_07_02
             var t3 = new Thread(MyThreadEntryPoint);
 
             t1.Start("https://www.cnn.com/");
-            Console.WriteLine(t1.ThreadState.UsefulStates());
+            Console.WriteLine($"t1 {t1.ThreadState.UsefulStates()}");
             t1.Join();
-            Console.WriteLine(t1.ThreadState.UsefulStates());
+            Console.WriteLine($"t1 {t1.ThreadState.UsefulStates()}");
 
             t2.Start("https://www.bbc.com/");
             t2.Join();
             t3.Start("https://dotnet.microsoft.com/");
             t3.Join();
+            Console.WriteLine($"t3 {t1.ThreadState.UsefulStates()}");
 
             Console.WriteLine("Sleep 5 seconds");
             Thread.Sleep(5000);
             Console.WriteLine("Done Sleeping!");
+
+            Console.WriteLine("Main finished");
         }
 
         private static void MyThreadEntryPoint(object arg)
@@ -41,8 +44,15 @@ namespace ADOPM3_07_02
             using (var w = new WebClient())
             {
                 Console.WriteLine($"Downloading {url}");
-                string page = w.DownloadString(url);
-                Console.WriteLine($"Downloaded {url}, length {page.Length}");
+                try
+                {
+                    string page = w.DownloadString(url);
+                    Console.WriteLine($"Downloaded {url}, length {page.Length}");
+                }
+                catch
+                {
+                    Console.WriteLine("Connection error");
+                }
             }
         }
 
