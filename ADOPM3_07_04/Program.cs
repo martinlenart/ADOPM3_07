@@ -22,15 +22,14 @@ namespace ADOPM3_07_04
                     iUnsafeResult1 = 1111;
                     Thread.Sleep(rnd.Next(1, 50));
                     iUnsafeResult2 = 1111;
+                    if (iUnsafeResult1 != iUnsafeResult2)
+                        Console.WriteLine("Unsafe mismatch");
 
                     lock (_locker)
                     {
                         iSafeResult1 = 8888;
                         Thread.Sleep(rnd.Next(1, 50));
                         iSafeResult2 = 8888;
-
-                        if (iUnsafeResult1 != iUnsafeResult2)
-                            Console.WriteLine("Unsafe mismatch");
 
                         if (iSafeResult1 != iSafeResult2)
                             Console.WriteLine("Safe mismatch");
@@ -47,6 +46,9 @@ namespace ADOPM3_07_04
                     iUnsafeResult1 = 2222;
                     Thread.Sleep(rnd.Next(1, 5));
                     iUnsafeResult2 = 2222;
+    
+                    if (iUnsafeResult1 != iUnsafeResult2)
+                        Console.WriteLine("Unsafe mismatch");
 
                     lock (_locker)
                     {
@@ -54,10 +56,7 @@ namespace ADOPM3_07_04
                         Thread.Sleep(rnd.Next(1, 5));
                         iSafeResult2 = 9999;
 
-                        if (iUnsafeResult1 != iUnsafeResult2)
-                            Console.WriteLine("Unsafe mismatch");
-
-                        if (iSafeResult1 != iSafeResult2)
+                         if (iSafeResult1 != iSafeResult2)
                             Console.WriteLine("Safe mismatch");
                     }
                 }

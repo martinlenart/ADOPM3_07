@@ -9,10 +9,12 @@ namespace ADOPM3_07_05
     {
         //Create a class where lock is included in the get/set is a good 
         //way to minimize the risk of deadlocks
+        //Threadsafe
         public class SafeData
         {
             object _locker = new object();
             int _safeData;
+
             public int Data
             {
                 get

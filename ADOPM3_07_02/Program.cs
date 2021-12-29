@@ -30,10 +30,11 @@ namespace ADOPM3_07_02
             t3.Join();
             Console.WriteLine($"t3 {t1.ThreadState.UsefulStates()}");
 
+            
             Console.WriteLine("Sleep 5 seconds");
             Thread.Sleep(5000);
             Console.WriteLine("Done Sleeping!");
-
+            
             Console.WriteLine("Main finished");
         }
 

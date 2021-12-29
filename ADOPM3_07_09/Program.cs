@@ -48,7 +48,7 @@ namespace ADOPM3_07_09
                     page += w.DownloadString(url as string);
 
                     //first task reaching 9 iterations throws an error
-                    if (i == 9) throw new Exception("Error in task!");
+                    if (i == 5) throw new Exception("Error in task!");
                 }
                 Console.WriteLine($"Downloaded {url as string}, length {page.Length}");
                 return page.Length;
