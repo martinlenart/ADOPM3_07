@@ -9,23 +9,24 @@ namespace ADOPM3_07_06
         static void Main(string[] args)
         {
             Console.WriteLine("Starting Main");
-            var signal = new ManualResetEvent(false);
+            using var signal = new ManualResetEvent(false);
 
             Console.WriteLine("Starting Thread");
-            new Thread(() =>
+            var t1 = new Thread(() =>
             {
                 Console.WriteLine("Thread waiting for signal...");
                 signal.WaitOne();
-                Thread.Sleep(2000);
-                signal.Dispose();
                 Console.WriteLine("Thread got signal!");
-            }).Start();
+            });
+            t1.Start();
 
             Console.WriteLine("Main Sleeps for 2s");
-            Thread.Sleep(2000);
+            Console.ReadKey();
 
-            Console.WriteLine("Main sends signal to thread");
+            Console.WriteLine("\nMain sends signal to thread");
             signal.Set();        // “Open” the signal
+
+            t1.Join();         
         }
     }
     //Exercise
