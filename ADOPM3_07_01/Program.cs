@@ -13,11 +13,19 @@ namespace ADOPM3_07_01
             var t3 = new Thread(MyThreadEntryPoint);
 
             //t3.IsBackground = true;             //dies with main thread
+            //t2.IsBackground = true;             //dies with main thread
+            //t1.IsBackground = true;             //dies with main thread
 
             t1.Start("https://www.cnn.com/");
             t2.Start("https://www.bbc.com/");
             t3.Start("https://dotnet.microsoft.com/");
 
+            
+            t1.Join();
+            t2.Join();
+            t3.Join();
+            
+            Thread.Sleep(5000);
             Console.WriteLine("Main finished");
         }
 

@@ -27,10 +27,10 @@ namespace ADOPM3_07_03
                     Console.WriteLine($"Downloading {url as string}");
                     for (int i = 0; i < localNrDownLoads; i++)
                     {
-                        Console.Write($"...t1:{i+1}");
+                        Console.WriteLine($"...t1:{i+1}");
                         page += w.DownloadString(url as string);
                     }
-                    Console.WriteLine($"Downloaded {url as string}, length {page.Length}");
+                    Console.WriteLine($"t1 Downloaded {url as string}, length {page.Length}");
                     nrCharDownloaded += page.Length;
                 }
             });
@@ -43,10 +43,10 @@ namespace ADOPM3_07_03
                     Console.WriteLine($"Downloading {url as string}");
                     for (int i = 0; i < localNrDownLoads; i++)
                     {
-                        Console.Write($"...t2:{i+1}");
+                        Console.WriteLine($"...t2:{i+1}");
                         page += w.DownloadString(url as string);
                     }
-                    Console.WriteLine($"Downloaded {url as string}, length {page.Length}");
+                    Console.WriteLine($"t2 Downloaded {url as string}, length {page.Length}");
                     nrCharDownloaded += page.Length;
                 }
             });
