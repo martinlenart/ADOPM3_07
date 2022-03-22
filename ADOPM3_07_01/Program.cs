@@ -12,7 +12,7 @@ namespace ADOPM3_07_01
             var t2 = new Thread(MyThreadEntryPoint);
             var t3 = new Thread(MyThreadEntryPoint);
 
-            t3.IsBackground = true;             //dies with main thread
+            //t3.IsBackground = true;             //dies with main thread
 
             t1.Start("https://www.cnn.com/");
             t2.Start("https://www.bbc.com/");
