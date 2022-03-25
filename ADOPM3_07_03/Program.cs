@@ -15,8 +15,8 @@ namespace ADOPM3_07_03
     {
         private static void Main(string[] args)
         {
-            int nrDownLoads = 0;        //Scoped - used as Thread input value and copied to local in the LE
-            int nrCharDownloaded = 0;   //Scoped - used as Thread output parameter
+            int nrDownLoads = 0;        //Captured in LE - used as Thread input value and copied to local in the LE
+            int nrCharDownloaded = 0;   //Captured in LE - used as Thread output parameter
             
             var t1 = new Thread((object url) =>
             {
