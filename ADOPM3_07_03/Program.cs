@@ -20,7 +20,7 @@ namespace ADOPM3_07_03
             
             var t1 = new Thread((object url) =>
             {
-                int localNrDownLoads = nrDownLoads;     //Copy the scoped to a local variable
+                int localNrDownLoads = nrDownLoads;     //Copy the captured to a local variable
                 using (var w = new WebClient())
                 {
                     string page = null;
