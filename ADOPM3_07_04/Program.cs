@@ -20,20 +20,22 @@ namespace ADOPM3_07_04
                 for (int i = 0; i < 100; i++)
                 {
                     iUnsafeResult1 = 1111;
-                    Thread.Sleep(rnd.Next(1, 50));
+                    Thread.Sleep(rnd.Next(1, 5));
                     iUnsafeResult2 = 1111;
                     if (iUnsafeResult1 != iUnsafeResult2)
                         Console.WriteLine("Unsafe mismatch");
 
+                    
                     lock (_locker)
                     {
                         iSafeResult1 = 8888;
-                        Thread.Sleep(rnd.Next(1, 50));
+                        Thread.Sleep(rnd.Next(1, 5));
                         iSafeResult2 = 8888;
 
                         if (iSafeResult1 != iSafeResult2)
                             Console.WriteLine("Safe mismatch");
                     }
+                    
 
                 }
             }).Start();
@@ -50,6 +52,7 @@ namespace ADOPM3_07_04
                     if (iUnsafeResult1 != iUnsafeResult2)
                         Console.WriteLine("Unsafe mismatch");
 
+                    
                     lock (_locker)
                     {
                         iSafeResult1 = 9999;
@@ -59,6 +62,7 @@ namespace ADOPM3_07_04
                          if (iSafeResult1 != iSafeResult2)
                             Console.WriteLine("Safe mismatch");
                     }
+                    
                 }
             }).Start();
         }

@@ -20,7 +20,7 @@ namespace ADOPM3_07_06
             });
             t1.Start();
 
-            Console.WriteLine("Main Sleeps for 2s");
+            Console.WriteLine("Main waits for user input");
             Console.ReadKey();
 
             Console.WriteLine("\nMain sends signal to thread");
