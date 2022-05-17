@@ -20,19 +20,17 @@ namespace ADOPM3_07_01
             t2.Start("https://www.bbc.com/");
             t3.Start("https://dotnet.microsoft.com/");
 
-            
+            //Location of Join matters...
             t1.Join();
             t2.Join();
             t3.Join();
             
-            Thread.Sleep(5000);
             Console.WriteLine("Main finished");
         }
 
         private static void MyThreadEntryPoint(object arg)
         {
             string url = (string)arg;
-
             using (var w = new WebClient())
             {
                 Console.WriteLine($"Downloading {url}");

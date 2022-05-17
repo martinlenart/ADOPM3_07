@@ -7,9 +7,11 @@ namespace ADOPM3_07_04
     {
         static void Main(string[] args)
         {
-            int iUnsafeResult1= 0;
+            //Two int that MUST be exactly the same (but will not - NOT thread safe)
+            int iUnsafeResult1= 0;  
             int iUnsafeResult2= 0;
 
+            //Two int that MUST be exactly the same (and will be - Thread safe)
             object _locker = new object();
             int iSafeResult1 = 0;
             int iSafeResult2 = 0;

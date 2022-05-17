@@ -56,9 +56,8 @@ namespace ADOPM3_07_05
             }).Start();
         }
     }    //Exercise
-    //1.    Discuss withing the group, how would you manage addition or substratcion on the Data? 
+    //1.    Discuss withing the group, how would you manage addition or substratcion of iSafeResult1 and iSafeResult2? 
     //      Try it by starting a couple of threads making additions and subtraction. How do you manage data integrity?
-    //2.    Add a method for addition and overload the + operator for a thread sfae addition.
-    //3.    Create your own safe Data class for a Generic type T. Test it by starting a couple of threads accessing and modyfying the data
-    //4.    Discuss in the group. What is thread safe? is your safe Data class thread safe? why?
+    //2.    Create your own safe Data class for a Generic type T. Test it by starting a couple of threads accessing and modyfying the data
+    //3.    Discuss in the group. What is thread safe? is your safe Data class thread safe? why?
 }

@@ -15,6 +15,7 @@ namespace ADOPM3_07_03
     {
         private static void Main(string[] args)
         {
+            //Data is not Thread safe, for illustration of variable capturing only
             int nrDownLoads = 0;        //Captured in LE - used as Thread input value and copied to local in the LE
             int nrCharDownloaded = 0;   //Captured in LE - used as Thread output parameter
             

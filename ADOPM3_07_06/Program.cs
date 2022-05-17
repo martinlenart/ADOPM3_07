@@ -30,5 +30,5 @@ namespace ADOPM3_07_06
         }
     }
     //Exercise
-    //1.    Create 3 threads waiting for a signal. What happens?
+    //1.    Create another thread waiting for the same signal. What happens?
 }
