@@ -29,10 +29,11 @@ namespace ADOPM3_07_05
 
         static void Main(string[] args)
         {
-            var mySafe = new SafeData();
+            var SafeStorage = new SafeData();
 
-            new Thread(() =>
+            new Thread((object arg) =>
             {
+                var mySafe = (SafeData)arg;
                 var rnd = new Random();
                 for (int i = 0; i < 100; i++)
                 {
@@ -41,10 +42,11 @@ namespace ADOPM3_07_05
                     if (i1 != i2)
                         Console.WriteLine("mySafe mismatch");
                 }
-            }).Start();
+            }).Start(SafeStorage);
 
-            new Thread(() =>
+            new Thread((object arg) =>
             {
+                var mySafe = (SafeData)arg;
                 var rnd = new Random();
                 for (int i = 0; i < 100; i++)
                 {
@@ -53,7 +55,7 @@ namespace ADOPM3_07_05
                     if (i1 != i2)
                         Console.WriteLine("mySafe mismatch");
                 }
-            }).Start();
+            }).Start(SafeStorage);
         }
     }    //Exercise
     //1.    Discuss withing the group, how would you manage addition or substratcion of iSafeResult1 and iSafeResult2? 
