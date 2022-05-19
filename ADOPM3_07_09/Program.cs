@@ -9,14 +9,15 @@ namespace ADOPM3_07_09
     {
         private static void Main(string[] args)
         {
-            var t1 = Task.Run(() => DownloadWebUrl("https://www.cnn.com/"));
-            var t2 = Task.Run(() => DownloadWebUrl("https://dotnet.microsoft.com/"));
+            var t1 = DownloadWebUrlAsync("https://www.cnn.com/");
+            var t2 = DownloadWebUrlAsync("https://dotnet.microsoft.com/");
+            
             try
             {
                 Console.WriteLine(t1.IsCompleted);  // False
                 Console.WriteLine(t2.IsCompleted);  // False
-                t1.Wait();
-                t2.Wait();
+                //t1.Wait();
+                //t2.Wait();
 
                 //Write the result
                 Console.WriteLine($"Totalnr of character downloaded: {t1.Result + t2.Result}");
@@ -37,6 +38,9 @@ namespace ADOPM3_07_09
                 Console.WriteLine(t2.IsCanceled); // false
             }
         }
+
+        private static Task<int> DownloadWebUrlAsync(string url) => Task.Run(() => DownloadWebUrl(url));
+
         private static int DownloadWebUrl(string url)
         {
             using (var w = new WebClient())
@@ -47,7 +51,7 @@ namespace ADOPM3_07_09
                 {
                     page += w.DownloadString(url as string);
 
-                    //first task reaching 9 iterations throws an error
+                    //first task reaching 5 iterations throws an error
                     if (i == 5) throw new Exception("Error in task!");
                 }
                 Console.WriteLine($"Downloaded {url as string}, length {page.Length}");
