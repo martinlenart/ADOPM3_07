@@ -4,7 +4,8 @@ using System.Threading;
 
 namespace ADOPM3_07_02
 {
-    public static class myExtensions
+    //Again, Extension metods are practical
+    public static class ThreadExtensions
     {
         public static ThreadState UsefulStates(this ThreadState ts)
         {
