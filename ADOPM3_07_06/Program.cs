@@ -10,6 +10,7 @@ namespace ADOPM3_07_06
         {
             Console.WriteLine("Starting Main");
             using var signal = new AutoResetEvent(false);
+            //using var signal = new ManualResetEvent(false);
 
             Console.WriteLine("Starting Thread1");
             var t1 = new Thread(() =>
