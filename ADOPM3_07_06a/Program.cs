@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Threading;
-
-namespace ADOPM3_07_06
+﻿namespace ADOPM3_07_06a
 {
     class Program
     {
@@ -12,58 +8,54 @@ namespace ADOPM3_07_06
             using var signal = new AutoResetEvent(false);
             //using var signal = new ManualResetEvent(false);
 
-            Console.WriteLine("Starting Thread1");
-            var t1 = new Thread(() =>
+            Console.WriteLine("Starting t1");
+            var t1 = Task.Run(() =>
             {
-                Console.WriteLine("Thread1 waiting for signal...");
+                Console.WriteLine("t1 waiting for signal...");
                 Thread.Sleep(new Random().Next(1, 100));
                 signal.WaitOne();
-                Console.WriteLine("Thread1 got signal!");
+                Console.WriteLine("t1 got signal!");
             });
-            t1.Start();
 
-            Console.WriteLine("Starting Thread2");
-            var t2 = new Thread(() =>
+            Console.WriteLine("Starting t2");
+            var t2 = Task.Run(() =>
             {
-                Console.WriteLine("Thread2 waiting for signal...");
+                Console.WriteLine("t2 waiting for signal...");
                 Thread.Sleep(new Random().Next(1, 100));
                 signal.WaitOne();
-                Console.WriteLine("Thread2 got signal!");
+                Console.WriteLine("t2 got signal!");
             });
-            t2.Start();
 
-            var t3 = new Thread(() =>
+            var t3 = Task.Run(() =>
             {
-                Console.WriteLine("Thread3 waiting for signal...");
+                Console.WriteLine("t3 waiting for signal...");
                 Thread.Sleep(new Random().Next(1, 100));
                 signal.WaitOne();
-                Console.WriteLine("Thread3 got signal!");
+                Console.WriteLine("t3 got signal!");
             });
-            t3.Start();
 
             Console.WriteLine("Main waits for user input");
             Console.ReadKey();
 
-            Console.WriteLine("\nMain sends signal to thread");
+            Console.WriteLine("\nMain sends signal to task");
             signal.Set();        // “Open” the signal
 
             Console.WriteLine("Main waits for user input");
             Console.ReadKey();
 
-            Console.WriteLine("\nMain sends signal to thread");
+            Console.WriteLine("\nMain sends signal to task");
             signal.Set();        // “Open” the signal
 
             Console.WriteLine("Main waits for user input");
             Console.ReadKey();
 
-            Console.WriteLine("\nMain sends signal to thread");
+            Console.WriteLine("\nMain sends signal to task");
             signal.Set();        // “Open” the signal
 
-            t1.Join();
-            t2.Join();
-            t3.Join();
+            Task.WaitAll(t1,t2,t3);
+            Console.WriteLine("All Finished");
         }
     }
     //Exercise
-    //1.    Create another thread waiting for the same signal. What happens?
+    //1.    Create another Task waiting for the same signal. What happens?
 }

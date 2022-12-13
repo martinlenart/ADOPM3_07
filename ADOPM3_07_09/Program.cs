@@ -17,8 +17,8 @@ namespace ADOPM3_07_09
             {
                 Console.WriteLine(t1.IsCompleted);  // False
                 Console.WriteLine(t2.IsCompleted);  // False
-                //t1.Wait();
-                //t2.Wait();
+
+                Task.WaitAll(t1,t2);
 
                 //Write the result
                 Console.WriteLine($"Totalnr of character downloaded: {t1.Result + t2.Result}");
@@ -40,7 +40,8 @@ namespace ADOPM3_07_09
             }
         }
 
-        private static Task<int> DownloadWebUrlAsync(string url) => Task.Run(() => DownloadWebUrl(url));
+        private static Task<int> DownloadWebUrlAsync(string url)
+            => Task.Run(() => DownloadWebUrl(url));
 
         private static int DownloadWebUrl(string url)
         {
