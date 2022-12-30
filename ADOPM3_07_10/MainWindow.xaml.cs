@@ -34,12 +34,20 @@ namespace ADOPM3_07_10
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //async
+            
             myGreetings.Text = "";
 
-            var t1 =  await DownloadWebUrlAsync("https://dotnet.microsoft.com/");
-            var t2 =  await DownloadWebUrlAsync("https://www.cnn.com/");
-          
+            var t1 = await DownloadWebUrlAsync("https://dotnet.microsoft.com/");
+            var t2 = await DownloadWebUrlAsync("https://www.cnn.com/");
             myGreetings.Text = $"Async read nr char: {t1 + t2}";
+
+            /* run parallell
+            var t1 =  DownloadWebUrlAsync("https://dotnet.microsoft.com/");
+            var t2 =  DownloadWebUrlAsync("https://www.cnn.com/");
+          
+            await Task.WhenAll(t1, t2);
+            myGreetings.Text = $"Async read nr char: {t1.Result + t2.Result}";
+            */
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -53,8 +61,8 @@ namespace ADOPM3_07_10
             myGreetings.Text = $"Sync read nr char: {i1 + i2}";
         }
 
+        private static Task<int> DownloadWebUrlAsync(string url) => Task.Run(()=>DownloadWebUrl(url));
 
-        private static Task<int> DownloadWebUrlAsync(string url) => Task.Run(() => DownloadWebUrl(url));
         private static int DownloadWebUrl(string url)
         {
             using (var w = new System.Net.WebClient())

@@ -10,11 +10,14 @@ namespace ADOPM3_07_09
     {
         private static void Main(string[] args)
         {
-            var t1 = DownloadWebUrlAsync("https://www.cnn.com/");
-            var t2 = DownloadWebUrlAsync("https://dotnet.microsoft.com/");
+            Task<int> t1 = null;
+            Task<int> t2 = null; 
             
             try
             {
+                t1 = DownloadWebUrlAsync("https://www.cnn.com/");
+                t2 = DownloadWebUrlAsync("https://dotnet.microsoft.com/");
+
                 Console.WriteLine(t1.IsCompleted);  // False
                 Console.WriteLine(t2.IsCompleted);  // False
 
@@ -29,14 +32,14 @@ namespace ADOPM3_07_09
             }
             finally
             {
-                Console.WriteLine(t1.IsFaulted); // true
-                Console.WriteLine(t1.IsCompleted); // true
-                Console.WriteLine(t1.IsCanceled); // false
+                Console.WriteLine(t1?.IsFaulted); // true
+                Console.WriteLine(t1?.IsCompleted); // true
+                Console.WriteLine(t1?.IsCanceled); // false
 
                 Console.WriteLine();
-                Console.WriteLine(t2.IsFaulted); // false
-                Console.WriteLine(t2.IsCompleted); // false
-                Console.WriteLine(t2.IsCanceled); // false
+                Console.WriteLine(t2?.IsFaulted); // false
+                Console.WriteLine(t2?.IsCompleted); // false
+                Console.WriteLine(t2?.IsCanceled); // false
             }
         }
 
@@ -54,7 +57,7 @@ namespace ADOPM3_07_09
                     page += w.DownloadString(url as string);
 
                     //first task reaching 5 iterations throws an error
-                    if (i == 5) throw new Exception("Error in task!");
+                   if (i == 5) throw new Exception("Error in task!");
                 }
                 Console.WriteLine($"Downloaded {url as string}, length {page.Length}");
                 return page.Length;
